@@ -6,11 +6,11 @@ import java.util.UUID;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
-import com.sysmap.parrot.model.User;
+import com.sysmap.parrot.model.Post;
 
 @Repository
-public interface UserRepository extends MongoRepository<User, UUID> {
-	User findUserByEmail(String userEmail);
+public interface PostRepository extends MongoRepository<Post, UUID> {
+	List<Post> findAllByAuthorIdIn(List<UUID> followersId);
 
-	List<User> findAllByIdNotIn(List<UUID> exceptionIds);
+	List<Post> findAllByAuthorId(UUID uuid);
 }
